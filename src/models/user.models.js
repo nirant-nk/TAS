@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const userSchema = new mongoose.Schema({
-  name: {
+const userSchema = new Schema({
+  fullName: {
     type: String,
     required: true,
   },
@@ -45,8 +45,9 @@ const userSchema = new mongoose.Schema({
       endTime: String, // e.g., 17:00
     },
   ],
-  pastAppointments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Appointment" }],
-  upcomingAppointments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Appointment" }],
+  pastAppointments: [{ type: Schema.Types.ObjectId, ref: "Appointment" }],
+  upcomingAppointments: [{ type: Schema.Types.ObjectId, ref: "Appointment" }],
+  cancelledAppointments: [{ type: Schema.Types.ObjectId, ref: "Appointment" }],
 },{timestamps:true});
 
 const User = mongoose.model("User", userSchema);
